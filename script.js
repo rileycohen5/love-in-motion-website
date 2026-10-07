@@ -68,90 +68,56 @@ prevButton.addEventListener("click", () => {
 showReel(0);
 restartTimer();
 
-const ZAPIER_INQUIRY_WEBHOOK =
-  "https://hooks.zapier.com/hooks/catch/17349487/uv7uan9/";
-
+/*
+ * CRITICAL LEAD INTEGRATION
+ * The form action in index.html is the source of truth and a no-JavaScript fallback.
+ * Never replace this handler with a simulated success message. A success message may
+ * only appear after Zapier returns a successful response.
+ */
 const inquiryForm = document.querySelector(".inquiry-form");
-const inquirySection = document.querySelector(".inquiry-section");
 
-inquiryForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (inquiryForm) {
+  inquiryForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const form = event.currentTarget;
-  const button = form.querySelector("button[type='submit']");
-  const originalLabel = button.textContent;
+    const button = inquiryForm.querySelector('button[type="submit"]');
+    const status = inquiryForm.querySelector(".form-status");
+    const endpoint = inquiryForm.action;
+    const originalButtonText = button.textContent;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
 
-  clearInquiryError();
-  button.disabled = true;
-  button.textContent = "Sending…";
-
-  const data = new FormData(form);
-  const payload = {
-    name: (data.get("name") || "").toString().trim(),
-    email: (data.get("email") || "").toString().trim(),
-    wedding_date: (data.get("wedding-date") || "").toString(),
-    venue_or_location: (data.get("venue") || "").toString().trim(),
-    instagram: (data.get("instagram") || "").toString().trim(),
-    package: (data.get("package") || "").toString(),
-    message: (data.get("message") || "").toString().trim(),
-  };
-
-  const body = new URLSearchParams();
-  Object.entries(payload).forEach(([key, value]) => body.append(key, value));
-
-  try {
-    const response = await fetch(ZAPIER_INQUIRY_WEBHOOK, {
-      method: "POST",
-      body,
-    });
-
-    if (!response.ok) {
-      throw new Error(`Webhook responded with ${response.status}`);
+    if (!endpoint || !endpoint.startsWith("https://hooks.zapier.com/hooks/catch/")) {
+      status.textContent = "The inquiry form is temporarily unavailable. Please email loveinmotion.ca@gmail.com.";
+      return;
     }
 
-    showInquirySuccess(payload.name);
-  } catch (error) {
-    button.disabled = false;
-    button.textContent = originalLabel;
-    showInquiryError();
-  }
-});
+    button.disabled = true;
+    button.textContent = "Sending Inquiry…";
+    status.textContent = "";
 
-function showInquirySuccess(name) {
-  const greeting = name ? `Thank you, ${name}.` : "Thank you.";
-  const success = document.createElement("div");
-  success.className = "inquiry-success";
-  success.setAttribute("role", "status");
-  success.setAttribute("aria-live", "polite");
-  success.innerHTML = `
-    <div class="inquiry-success-mark" aria-hidden="true">&#10003;</div>
-    <p class="section-kicker">Inquiry Received</p>
-    <h3>${greeting}</h3>
-    <p>
-      Your details are on their way to Makenna. You will hear back soon with
-      availability, package guidance, and next steps.
-    </p>
-  `;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: new FormData(inquiryForm),
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
+      });
 
-  inquiryForm.replaceWith(success);
-  success.scrollIntoView({ behavior: "smooth", block: "center" });
-}
+      if (!response.ok) {
+        throw new Error(`Zapier returned ${response.status}`);
+      }
 
-function showInquiryError() {
-  let banner = inquirySection.querySelector(".inquiry-error");
-  if (!banner) {
-    banner = document.createElement("p");
-    banner.className = "inquiry-error";
-    banner.setAttribute("role", "alert");
-    banner.textContent =
-      "Something went wrong sending your inquiry. Please try again or email loveinmotion.ca@gmail.com.";
-    inquiryForm.prepend(banner);
-  }
-}
-
-function clearInquiryError() {
-  const banner = inquirySection.querySelector(".inquiry-error");
-  if (banner) {
-    banner.remove();
-  }
+      inquiryForm.reset();
+      button.textContent = "Inquiry Received";
+      status.textContent = "Thank you! Your details were sent successfully. Makenna will be in touch soon.";
+    } catch (error) {
+      button.textContent = originalButtonText;
+      status.textContent = "Your inquiry could not be sent. Please try again or email loveinmotion.ca@gmail.com.";
+      console.error("Inquiry submission failed:", error);
+    } finally {
+      window.clearTimeout(timeout);
+      button.disabled = false;
+    }
+  });
 }

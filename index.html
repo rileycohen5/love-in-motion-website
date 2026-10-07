@@ -14,9 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="assets/images/favcon.png" />
-    <link rel="apple-touch-icon" href="assets/images/favcon.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260728-crop" />
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -37,7 +35,13 @@
       <section class="hero" id="home">
         <div class="hero-copy">
           <p class="eyebrow">Wedding content creation by Makenna Cohen</p>
-          <h1 class="hero-logo">Love in Motion</h1>
+          <h1 class="hero-logo">
+            <img
+              src="assets/logo/love-in-motion-logo.png"
+              alt="Love in Motion"
+              class="hero-logo-image"
+            />
+          </h1>
         </div>
 
         <div class="reel-stage" aria-label="Featured wedding reels created by Love in Motion">
@@ -105,7 +109,7 @@
 
       <section class="section owner-section" id="owner">
         <div class="owner-photo">
-          <img src="assets/images/makenna-cohen-owner.jpg" alt="Makenna Cohen, owner of Love in Motion" />
+          <img src="assets/images/makenna-cohen-owner.jpg?v=20260728" alt="Makenna Cohen, owner of Love in Motion" />
         </div>
         <div class="owner-bio">
           <p class="section-kicker">About Us</p>
@@ -243,7 +247,16 @@
             availability, package guidance, and next steps.
           </p>
         </div>
-        <form class="inquiry-form">
+        <!--
+          CRITICAL LEAD INTEGRATION: Keep the Zapier action and POST method intact.
+          The native action is an intentional fallback if JavaScript fails to load.
+          Run `python3 tests/verify_form.py` after form changes.
+        -->
+        <form
+          class="inquiry-form"
+          action="https://hooks.zapier.com/hooks/catch/17349487/uv7uan9/"
+          method="post"
+        >
           <label>
             Name
             <input type="text" name="name" autocomplete="name" required />
@@ -278,6 +291,7 @@
             <textarea name="message" rows="5"></textarea>
           </label>
           <button class="button button-dark full-span" type="submit">Inquire With Love in Motion</button>
+          <p class="form-status full-span" role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
@@ -298,6 +312,6 @@
       </address>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260805-lead-form"></script>
   </body>
 </html>
