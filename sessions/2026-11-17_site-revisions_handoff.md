@@ -1,0 +1,60 @@
+# Love in Motion website session - 2026-11-17
+
+## What happened
+
+- Applied Makenna's "Love in Motion Website Revisions" list to the real production copy
+  (`.netlify-merge/`, which matched the live site byte for byte) and copied the result into
+  the repo root so GitHub now matches what will be live.
+- Answered the hosting question: the live domain is served by Netlify, not GitHub Pages
+  (DNS points at Netlify, response header `Server: Netlify`; the GitHub repo is private
+  with no Pages site). So running out of Netlify credits can take the site down.
+- Likely cause of the credit burn: 16 original iPhone videos (about 730 MB, HEVC .MOV)
+  were all set to autoplay, so one visit could download hundreds of MB.
+
+## What changed
+
+- Theme: "European Editorial Romance" - warm ivory background, espresso ink, rosewood
+  accent, italic accent words in headlines. Fonts: Cormorant Garamond (headlines),
+  Manrope (small text). Removed Bodoni Moda, Inter, Great Vibes.
+- Phone menu: six tabs on a tidy 3 x 2 grid, two header buttons side by side.
+- Mission: kicker "Our Mission", heading "The Art of Remembering", new description.
+- About: "Behind the Lens - Meet Makenna", new bio.
+- Gallery renamed Portfolio (nav, anchor `#portfolio`), new description.
+- B&W photo and client words kept unchanged.
+- Packages: new intro paragraph, The Essentials / The Signature / The Heirloom with price
+  ranges, descriptions and lists as supplied.
+- FAQ section built but `hidden` (no content supplied yet).
+- Inquiry: heading "Tell Us More About Your Day"; new fields Multi-Locations, Budget Range,
+  Key Moments, Wedding Planner or Coordinator; package names updated; helper notes added.
+  Zapier payload gained `additional_locations`, `budget_range`, `key_moments`,
+  `planner_or_coordinator`.
+- Footer TikTok now @loveinmotionco.
+- Video: compressed web copies in `assets/web-reels/` (H.264 720p MP4 + poster JPG,
+  130 MB total). Portfolio reels load and play only when scrolled into view; carousel reels
+  load only when shown.
+- Fixed: customer name was inserted into the success message as raw HTML; now escaped.
+- Typos fixed from the brief: "Precessional" -> processional, "Sneak Peak" -> sneak peek,
+  "wedding to memories" -> wedding memories, "honored to being" -> honored to be.
+
+Commit: see `git log` on branch `site-revisions-2026-11-17`.
+
+## Decisions
+
+- Did not publish to Netlify: needs Makenna's sign-off and the Netlify credit status.
+- Package 2 and 3 have no description line and Package 3 has no delivery timeframe,
+  because the brief left those blank.
+- Original .MOV files kept locally, not committed (two exceed GitHub's 100 MB limit).
+
+## Blocked / waiting
+
+- Makenna: new up-to-date reels for the carousel (none were found on this machine).
+- Makenna: 3 FAQ questions and answers.
+- Makenna: descriptions for The Signature and The Heirloom, and Heirloom delivery time.
+- Riley or Makenna: update the Zapier email step so the 4 new form fields appear in the
+  inquiry email.
+- Riley: check Netlify billing for project `love-in-motion-ca` before publishing.
+
+## Suggested next prompt
+
+"Makenna approved the preview. Here are the new reels and FAQ answers: ... Add them and
+publish `.netlify-merge` to the Netlify project love-in-motion-ca."

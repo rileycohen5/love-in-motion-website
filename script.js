@@ -68,6 +68,28 @@ prevButton.addEventListener("click", () => {
 showReel(0);
 restartTimer();
 
+// Portfolio reels: only download and play a video while it is on screen.
+const galleryVideos = Array.from(document.querySelectorAll(".gallery-reel-card video"));
+
+if ("IntersectionObserver" in window) {
+  const galleryObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    },
+    { rootMargin: "120px 0px", threshold: 0.25 }
+  );
+  galleryVideos.forEach((video) => galleryObserver.observe(video));
+} else {
+  galleryVideos.forEach((video) => video.play().catch(() => {}));
+}
+
 const ZAPIER_INQUIRY_WEBHOOK =
   "https://hooks.zapier.com/hooks/catch/17349487/uv7uan9/";
 
@@ -83,7 +105,7 @@ inquiryForm.addEventListener("submit", async (event) => {
 
   clearInquiryError();
   button.disabled = true;
-  button.textContent = "Sending…";
+  button.textContent = "Sending...";
 
   const data = new FormData(form);
   const payload = {
@@ -91,7 +113,11 @@ inquiryForm.addEventListener("submit", async (event) => {
     email: (data.get("email") || "").toString().trim(),
     wedding_date: (data.get("wedding-date") || "").toString(),
     venue_or_location: (data.get("venue") || "").toString().trim(),
+    additional_locations: (data.get("locations") || "").toString().trim(),
     instagram: (data.get("instagram") || "").toString().trim(),
+    budget_range: (data.get("budget") || "").toString().trim(),
+    key_moments: (data.get("key-moments") || "").toString().trim(),
+    planner_or_coordinator: (data.get("planner") || "").toString().trim(),
     package: (data.get("package") || "").toString(),
     message: (data.get("message") || "").toString().trim(),
   };
@@ -118,7 +144,7 @@ inquiryForm.addEventListener("submit", async (event) => {
 });
 
 function showInquirySuccess(name) {
-  const greeting = name ? `Thank you, ${name}.` : "Thank you.";
+  const greeting = name ? `Thank you, ${escapeHtml(name)}.` : "Thank you.";
   const success = document.createElement("div");
   success.className = "inquiry-success";
   success.setAttribute("role", "status");
@@ -154,4 +180,14 @@ function clearInquiryError() {
   if (banner) {
     banner.remove();
   }
+}
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[char]);
 }
