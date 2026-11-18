@@ -635,6 +635,33 @@ cite {
   border-bottom-color: rgba(246, 241, 233, 0.2);
 }
 
+.addons-section {
+  border-top: 1px solid var(--line);
+}
+
+.addon-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.addon-card {
+  border: 1px solid var(--ink);
+  padding: clamp(24px, 3vw, 38px);
+}
+
+.addon-card h3 {
+  margin-bottom: 6px;
+}
+
+.addon-includes {
+  border-top: 1px solid var(--line);
+  color: var(--soft-ink);
+  font-size: 0.94rem;
+  margin: 0;
+  padding-top: 16px;
+}
+
 .faq-section {
   border-top: 1px solid var(--line);
 }
@@ -853,6 +880,10 @@ button[disabled] {
   .package-card {
     min-height: auto;
   }
+
+  .addon-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 680px) {
@@ -871,13 +902,13 @@ button[disabled] {
   .main-nav {
     display: grid;
     gap: 10px 8px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     text-align: center;
   }
 
   .main-nav a {
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
     padding-bottom: 2px;
   }
 
@@ -1008,4 +1039,12 @@ button[disabled] {
     margin: 10% auto -6%;
     width: min(90vw, 290px);
   }
+}
+
+.inquiry-copy .section-kicker {
+  color: var(--soft-ink);
+  font-family: var(--body);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin: 0 0 18px;
 }
