@@ -101,3 +101,13 @@ publish `.netlify-merge` to the Netlify project love-in-motion-ca."
   within about an hour, up to 48 hours worst case.
 - Keep the Netlify project and Netlify DNS zone until 2026-11-20, so anyone still
   looking up the old answer keeps getting a working site; delete them after that.
+
+## Update - Netlify DNS repointed (Riley approved)
+
+- Riley's home router kept asking Netlify DNS and got the old Netlify answer.
+- With Riley's OK, deleted the two NETLIFY records in the Netlify DNS zone and added the
+  same GitHub records (4 A records + www CNAME to rileycohen5.github.io, TTL 300).
+  Now both GoDaddy and Netlify DNS answer with GitHub, so every visitor reaches GitHub.
+- Riley's machine verified on GitHub (Server: GitHub.com) with the new design.
+- Netlify plan can be cancelled now. Keep the Netlify DNS zone until 2026-11-20, then
+  delete it with the two Netlify projects.
