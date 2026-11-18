@@ -30,3 +30,8 @@
 ## Suggested next prompt
 
 "Review the other section titles on loveinmotionco.com and tell me if any should match the new Packages size."
+
+## Follow-up
+
+- Added repo `CLAUDE.md`: always push with the rileycohen5 token from `C:\Dev\muse\.env`; notes the
+  1 minute publish time and up to 10 minute browser cache.
