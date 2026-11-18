@@ -120,3 +120,31 @@ publish `.netlify-merge` to the Netlify project love-in-motion-ca."
   Disposable Film Photography (from $100, up to 27 photos).
 - Fixed the Inquiry label style. Verified live on loveinmotionco.com.
 - Still waiting: Kenna's Google Drive folder with 3 new reels for the carousel.
+
+## Session close - current state (supersedes the older "Blocked / waiting" and "Next" lists above)
+
+- Live: https://loveinmotionco.com on GitHub Pages (repo `rileycohen5/love-in-motion-website`,
+  branch `main`, root). HTTPS on, cert auto-renews. The repo root is the source of truth;
+  `.netlify-merge/` is an old copy and is gitignored.
+- Commits this session: 1e2fed7, 129f92b, 8a5e542, 164138a, 025512f, ebc309b, 2aba554, plus this log.
+
+### Blocked / waiting
+- Kenna: Google Drive folder with 3 new reels for the top carousel (link must be shared as
+  "anyone with the link can view").
+- Riley: cancel the Netlify plan (safe now). After 2026-11-20, delete the Netlify DNS zone
+  for loveinmotionco.com and the projects `love-in-motion-ca` and `relaxed-tiramisu-94a586`.
+- Not yet proven: a real inquiry email showing the 4 new fields (Zap v2).
+
+### Optional
+- Add an "Add-ons of interest" choice (Polaroid / Disposable film) to the inquiry form; needs a
+  matching line in the Zapier email (`{{362617736__<field>}}` typed into the body).
+
+### How to add reels (for the next session)
+- ffmpeg to H.264 720p MP4 + poster JPG into `assets/web-reels/`, add a `.reel-card` to the
+  carousel in `index.html`, push to `main` with the rileycohen5 token from `C:\Dev\muse\.env`
+  (never print it), wait for the Pages build, check live.
+
+## Suggested next prompt
+
+"Here is Kenna's Google Drive folder with 3 reels: <link>. Compress them like the others, add
+them to the top carousel, publish to loveinmotionco.com and confirm it is live."
