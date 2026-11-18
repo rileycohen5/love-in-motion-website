@@ -122,9 +122,15 @@ h3 em {
   margin: 0 0 18px;
 }
 
-.packages-heading {
+.section-heading.packages-heading {
   display: block;
   max-width: 900px;
+}
+
+.packages-heading h2 {
+  font-size: clamp(2.4rem, 4.2vw, 4rem);
+  line-height: 1.05;
+  max-width: 760px;
 }
 
 .packages-intro {
