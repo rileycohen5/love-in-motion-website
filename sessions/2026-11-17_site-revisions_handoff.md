@@ -111,3 +111,12 @@ publish `.netlify-merge` to the Netlify project love-in-motion-ca."
 - Riley's machine verified on GitHub (Server: GitHub.com) with the new design.
 - Netlify plan can be cancelled now. Keep the Netlify DNS zone until 2026-11-20, then
   delete it with the two Netlify projects.
+
+## Update - Kenna's second batch (commit ebc309b, live)
+
+- FAQ section turned on with Kenna's 3 questions; FAQ tab added to the menu.
+- Descriptions added for The Signature and The Heirloom.
+- New Add-ons section: Polaroid Photography (from $125, 20 instant photos) and
+  Disposable Film Photography (from $100, up to 27 photos).
+- Fixed the Inquiry label style. Verified live on loveinmotionco.com.
+- Still waiting: Kenna's Google Drive folder with 3 new reels for the carousel.
