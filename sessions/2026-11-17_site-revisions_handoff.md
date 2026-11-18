@@ -90,3 +90,14 @@ publish `.netlify-merge` to the Netlify project love-in-motion-ca."
 - Once the cert is issued, confirm https://loveinmotionco.com serves the new design, then
   Netlify project `love-in-motion-ca` (and `relaxed-tiramisu-94a586`) can be deleted.
 - Still waiting on Makenna: new reels, FAQ answers, Signature/Heirloom descriptions.
+
+## Update - HTTPS live (16:27)
+
+- GitHub certificate approved for loveinmotionco.com and www (expires 2027-02-15, GitHub
+  renews it automatically). It only started after removing and re-adding the custom
+  domain via the API. "Enforce HTTPS" is on; www redirects to the bare domain.
+- Google, Cloudflare and Quad9 public DNS already return GitHub's addresses. Some home
+  networks (including Riley's) still have the old Netlify answer cached; this clears
+  within about an hour, up to 48 hours worst case.
+- Keep the Netlify project and Netlify DNS zone until 2026-11-20, so anyone still
+  looking up the old answer keeps getting a working site; delete them after that.
