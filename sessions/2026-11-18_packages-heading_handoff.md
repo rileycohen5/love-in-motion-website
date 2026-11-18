@@ -22,9 +22,11 @@
 
 ## Blocked / pending
 
-- Not pushed yet: waiting on Riley's go-ahead to push to main (push makes it live on
-  GitHub Pages).
+- None. Pushed to main on Riley's go-ahead and confirmed live at loveinmotionco.com about
+  60 seconds later (new style rule served in styles.css).
+- Note: the local gh login for rileycohen5 is still expired; pushes use the rileycohen5
+  GITHUB_TOKEN in C:\Dev\muse\.env (never printed).
 
 ## Suggested next prompt
 
-"Push the packages heading fix live and confirm it on the site."
+"Review the other section titles on loveinmotionco.com and tell me if any should match the new Packages size."
