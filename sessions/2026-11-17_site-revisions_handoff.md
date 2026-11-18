@@ -58,3 +58,35 @@ Commit: see `git log` on branch `site-revisions-2026-11-17`.
 
 "Makenna approved the preview. Here are the new reels and FAQ answers: ... Add them and
 publish `.netlify-merge` to the Netlify project love-in-motion-ca."
+
+## Update - move to GitHub Pages (same day)
+
+- Why it was still on Netlify: the move was never finished. The domain's DNS lived in
+  Netlify DNS (nameservers dns1-4.p08.nsone.net) and pointed at Netlify project
+  `love-in-motion-ca`; the GitHub repo was private with no Pages site.
+- Repo `rileycohen5/love-in-motion-website` made public (Riley's choice; history scanned,
+  no secrets). Branch fast-forwarded into `main`; added `CNAME` (loveinmotionco.com) and
+  `.nojekyll` in commit `129f92b`. GitHub Pages serves `main` at `/`, custom domain
+  loveinmotionco.com (no github.io ending).
+- Auth: used the `rileycohen5` token from `C:\Dev\muse\.env` (never printed). The local gh
+  login for rileycohen5 is expired; `rileyinsell` cannot see this repo.
+- GoDaddy (registrar): nameservers switched from Netlify DNS to GoDaddy defaults
+  (ns23/ns24.domaincontrol.com). Records: A @ -> 185.199.108.153, .109, .110, .111;
+  CNAME www -> rileycohen5.github.io. Netlify zone only had two NETLIFY records, nothing
+  else to carry over. No email (MX) on the domain.
+- HTTPS certificate is issued by GitHub after DNS settles; then "Enforce HTTPS" is turned on.
+
+## Update - Zapier
+
+- Zap "Wedding Inquiry Form API" (id 362617736) published as v2 "Add 4 new website form
+  fields": email body now includes Additional Locations, Budget Range, Key Moments,
+  Planner/Coordinator (typed field references `{{362617736__<field>}}`).
+- One test inquiry was sent with Riley's approval (marked TEST). Zap history showed all
+  fields arrived. Older blank runs at 2:10 PM came from empty requests, not the site.
+- Not yet verified: one live submission after v2 to confirm the new lines fill in.
+
+## Next
+
+- Once the cert is issued, confirm https://loveinmotionco.com serves the new design, then
+  Netlify project `love-in-motion-ca` (and `relaxed-tiramisu-94a586`) can be deleted.
+- Still waiting on Makenna: new reels, FAQ answers, Signature/Heirloom descriptions.
