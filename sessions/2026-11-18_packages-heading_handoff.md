@@ -41,4 +41,4 @@
 - Site had no favicon. Added an "LM" monogram (Garamond italic, ivory on espresso, rounded square):
   `favicon.ico` (16/32/48), `assets/icons/favicon-32.png`, `apple-touch-icon.png` (180), `icon-512.png`,
   plus link tags and theme-color in `index.html`. Script logo was too thin to read at tab size.
-- Not pushed: awaiting Riley review on the local server (http://localhost:8080).
+- Added ?v=2 to the icon links (browser had cached "no icon"). Pushed to main on Riley's request.
